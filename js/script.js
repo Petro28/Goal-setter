@@ -1,5 +1,3 @@
-"use strict"
-
 const listsContainer = document.querySelector('[data-lists]')
 const newListForm = document.querySelector('[data-new-list-form]')
 const newListInput = document.querySelector('[data-new-list-input]')
@@ -43,7 +41,7 @@ deleteTaskButton.addEventListener('click', e => {
 
 deleteListButton.addEventListener('click', e => {
   lists = lists.filter(list => list.id !== selectedListId)
-  selectedListId = null
+  selectedListId = 'null'
   saveAndRender()
 })
 
@@ -91,14 +89,14 @@ function render() {
   renderLists()
 
   const selectedList = lists.find(list => list.id === selectedListId)
-  if (selectedListId) {
+  if (selectedListId == 'null') {
+    listDisplayContainer.style.display = 'none'
+  } else {
     listDisplayContainer.style.display = ''
     listTitleElement.innerText = selectedList.name
     renderTaskCount(selectedList)
     clearElement(tasksContainer)
     renderTasks(selectedList)
-  } else {
-    listDisplayContainer.style.display = 'none'
   }
 }
 
